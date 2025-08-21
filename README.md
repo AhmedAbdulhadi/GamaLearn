@@ -120,6 +120,10 @@ To run the maven and serve the report locally:
 mvn clean test; allure serve target/allure-results
 ```
 
+<img width="1680" height="630" alt="Screenshot 2025-08-21 at 3 07 12 PM" src="https://github.com/user-attachments/assets/d6b881e1-2d2e-410d-a059-b03bdee511ff" />
+<img width="1502" height="830" alt="Screenshot 2025-08-21 at 3 07 26 PM" src="https://github.com/user-attachments/assets/01ee5cf2-85c5-4b02-b899-a1644645cabf" />
+
+
 ## 📷 Attachments & Logs
 
 You can enhance Allure reports with screenshots and logs in your test code:
@@ -137,6 +141,11 @@ public byte[] saveScreenshot(byte[] screenshot) {
 mvn clean gatling:test
 ```
 Report found under /target/gatling/.../index.html
+<img width="1468" height="711" alt="Screenshot 2025-08-21 at 3 04 14 PM" src="https://github.com/user-attachments/assets/59ae6fba-5683-4c67-9944-e9d636719bc7" />
+<img width="1014" height="703" alt="Screenshot 2025-08-21 at 3 04 24 PM" src="https://github.com/user-attachments/assets/475bd1cd-0bdd-40c7-85b6-12d01cadbd06" />
+<img width="1010" height="752" alt="Screenshot 2025-08-21 at 3 04 33 PM" src="https://github.com/user-attachments/assets/8ffa8423-299e-4374-8f02-2aa3a109f2b3" />
+
+
 
 ## 📁 Project Structure
 ```
