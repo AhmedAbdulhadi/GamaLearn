@@ -14,6 +14,7 @@ It is designed for cross-browser/device testing and supports passing runtime par
 - Playwright (UI Automation)
 - TestNG (Test Runner & Suite Management)
 - Allure TestNG (Reporting)
+- Gatling (Performance)
 
 ## 📦 Dependencies
 
@@ -130,6 +131,12 @@ public byte[] saveScreenshot(byte[] screenshot) {
     return screenshot;
 }
 ```
+
+## Run Peformance:
+```
+mvn clean gatling:test
+```
+Report found under /target/gatling/.../index.html
 
 ## 📁 Project Structure
 ```
