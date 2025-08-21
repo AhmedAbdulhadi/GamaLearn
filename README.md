@@ -1,6 +1,6 @@
-# 📘 GamaLearn UI Automation
+# 📘 GamaLearn Automation
 
-This project is a UI test automation framework built with Playwright
+This project is a UI & Performance test automation framework built with Playwright & Gatling
 , TestNG
 , and Allure Reports
  to provide powerful reporting.
