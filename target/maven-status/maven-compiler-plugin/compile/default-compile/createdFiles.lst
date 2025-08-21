@@ -1,0 +1,6 @@
+org/assignment/Main.class
+config/ConfigLoader.class
+pages/SignupPage.class
+pages/BasePage.class
+config/Config.class
+core/PlaywrightFactory.class
