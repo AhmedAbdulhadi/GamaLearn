@@ -12,10 +12,14 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+
         <playwright.version>1.46.0</playwright.version>
         <testng.version>7.9.0</testng.version>
         <allure.version>2.24.0</allure.version>
         <surefire.version>3.2.5</surefire.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <gatling.plugin.version>4.20.1</gatling.plugin.version>
+        <gatling.version>3.10.5</gatling.version>
     </properties>
 
     <dependencies>
@@ -39,6 +43,26 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Catling -->
+        <dependency>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-core-java</artifactId>
+            <version>${gatling.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-http-java</artifactId>
+            <version>${gatling.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>${gatling.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -71,6 +95,55 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <!-- Default resultsDirectory is ${project.build.directory}/allure-results -->
+            </plugin>
+
+            <!-- Gatling plugin -->
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>${gatling.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!-- simulationsFolder is auto-detected in recent versions; omit it -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.4.1</version> <!-- latest as of now -->
+                <executions>
+                    <execution>
+                        <id>open-gatling-report</id>
+                        <!-- run after gatling:test completes -->
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <!-- use a shell so we can pick the newest report folder -->
+                            <executable>/bin/sh</executable>
+                            <arguments>
+                                <argument>-c</argument>
+                                <argument>
+                                    open "$(ls -td ${project.build.directory}/gatling/* | head -1)/index.html"
+                                </argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
